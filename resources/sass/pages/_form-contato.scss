@@ -1,0 +1,63 @@
+section#contato__wrapper {
+  background-image: url('/images/contatobg.jpg');
+  color: $white !important;
+
+  h3 {
+    &.title {
+      font-size: 2.5em;
+      font-weight: 700;
+    }
+  }
+
+  form#form-contato {
+    label {
+      @include font-size(14px);
+    }
+
+    textarea {
+      resize: none;
+      min-height: 150px;
+    }
+
+    button {
+      width: 150px;
+      color: $theme-color-1;
+      @include font-size(14px);
+    }
+
+    input, textarea {
+      font-weight: bold;
+      height: 50px;
+      color: $theme-color-1;
+    }
+
+    .form-control {
+      &::-webkit-input-placeholder {
+        color: $gray-500;
+      }
+      &:-moz-placeholder {
+        color: $gray-500;
+        opacity: 1;
+      }
+      &::-moz-placeholder {
+        color: $gray-500;
+        opacity: 1;
+      }
+      &:-ms-input-placeholder {
+        color: $gray-500;
+      }
+      &::-ms-input-placeholder {
+        color: $gray-500;
+      }
+    }
+  }
+}
+
+
+@include media-breakpoint-down(sm) {
+  section#contato__wrapper {
+    h3.title {
+      font-size: 1.75em;
+    }
+  }
+}

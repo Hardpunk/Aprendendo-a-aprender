@@ -1,0 +1,51 @@
+section#funcionalidades__wrapper {
+  color: $theme-color-1 !important;
+  background-color: #f7f7f7;
+
+  h3.title {
+    font-size: 2.5em;
+    font-weight: 700;
+  }
+
+  .card {
+    border: none;
+    background: transparent !important;
+
+    .card-body {
+      .item--icon__wrapper {
+        i {
+          font-size: 70px;
+          color: $theme-color-3;
+        }
+      }
+
+      .item--text__wrapper {
+        p.item--description {
+          @include font-size(14px);
+        }
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  section#funcionalidades__wrapper {
+    h3.title {
+      font-size: 1.75em;
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  section#funcionalidades__wrapper {
+    .card {
+      .card-body {
+        .item--icon__wrapper {
+          i {
+            font-size: 40px;
+          }
+        }
+      }
+    }
+  }
+}

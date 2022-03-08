@@ -1,0 +1,57 @@
+{
+  "_from": "custom_easy_paginate",
+  "_id": "custom_easy_paginate@1.2.0",
+  "_inBundle": false,
+  "_integrity": "sha512-MvBpavPwOeeU/6yiSPi8kdGD+YC7wlmcs+zZMxRTHFnch/1+kYl6O5Z4Eb7C37WOa6g3SDUkAp3n70dAa1xQrg==",
+  "_location": "/custom_easy_paginate",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "custom_easy_paginate",
+    "name": "custom_easy_paginate",
+    "escapedName": "custom_easy_paginate",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/custom_easy_paginate/-/custom_easy_paginate-1.2.0.tgz",
+  "_shasum": "76214aabbd5b76b123da0ad132495297d9699f1a",
+  "_spec": "custom_easy_paginate",
+  "_where": "C:\\wamp64\\subdomains\\speed-cursos",
+  "author": {
+    "name": "Stephane Litou",
+    "email": "contact@stephane-litou.com"
+  },
+  "bugs": {
+    "url": "https://github.com/abundis29/jquery.easyPaginate/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "jquery": ">=1.8 <=3.4"
+  },
+  "deprecated": false,
+  "description": "jQuery.easyPaginate is a plugin to paginate pretty anything, like lists, links etc...",
+  "directories": {
+    "lib": "lib"
+  },
+  "homepage": "http://st3ph.github.io/jquery.easyPaginate",
+  "keywords": [
+    "paginate"
+  ],
+  "license": "MIT",
+  "main": "lib/jquery.easyPaginate.js",
+  "name": "custom_easy_paginate",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abundis29/jquery.easyPaginate.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.2.0"
+}

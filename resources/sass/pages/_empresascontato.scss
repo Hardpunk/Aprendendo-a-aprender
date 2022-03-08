@@ -1,0 +1,479 @@
+/*css igual site*/
+body {
+  background: #fff;
+}
+
+.cover {
+  margin-bottom: 70px;
+}
+
+.cover__cta {
+  color: #130464;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 10px 44px;
+  border: solid 1px #130464;
+  border-radius: 24px;
+  text-align: center;
+  display: inline-block;
+  -webkit-transition: .3s;
+  transition: .3s;
+  margin: 0 auto;
+
+  &:hover, &:active {
+    background-color: #1B0883;
+    color: #fff;
+    -webkit-transition: 0.3s;
+  }
+}
+
+.testimonials-cta .cover__cta {
+  margin: 20px auto;
+  transition: 0.3s;
+  margin: 20px auto;
+}
+
+.cover__art {
+  margin: 27px auto;
+  max-width: 300px;
+  height: 154px;
+  display: block;
+  background-image: url(/empresas/assets/img/home/cover.1616501197.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.cover__test {
+  color: #130464;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 10px 44px;
+  border: solid 1px #d9e4f0;
+  background-color: #d9e4f0;
+  border-radius: 20px;
+  text-align: center;
+  margin: 0 auto;
+  display: inline-block;
+  -webkit-transition: .3s;
+  transition: 0.3s;
+
+  &:hover, &:active {
+    background-color: #BDD2EA;
+  }
+
+  &.--bigger-button {
+    padding: 10px 30px;
+  }
+}
+
+.cover__divisor {
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 50px 0;
+
+  &.--small {
+    max-width: 168px;
+    margin: 50px auto;
+  }
+}
+
+#por-que-alura .cover__divisor.--small {
+  margin: 50px auto 0;
+  padding-bottom: 50px;
+}
+
+.por-que-alura__video {
+  margin-bottom: 70px;
+
+  iframe {
+    height: 248px;
+  }
+}
+
+.feature__title {
+  font-size: 21px;
+  color: #141414;
+  font-family: 'Libre Baskerville',serif;
+  max-width: 70%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  margin-bottom: 20px;
+  -webkit-box-align: center;
+
+  &:before {
+    content: '';
+    align-items: center;
+    content: '';
+    display: block;
+    background: #216FF4;
+    width: 1px;
+    height: 50px;
+    margin-right: 20px;
+  }
+}
+
+.feature__text {
+  margin: 0 0 50px 20px;
+  color: #141414;
+  font-weight: 100;
+  line-height: 1.5;
+}
+
+.por-que-alura.--features {
+  .container {
+    margin-bottom: 70px;
+  }
+
+  .section__cta {
+    margin-top: 100px;
+  }
+}
+
+.feature__image {
+  width: 175px;
+  height: 135px;
+  background-size: contain;
+}
+
+.img-01 {
+  background-image: url(/images/sua-empresa/img1.svg);
+  background-repeat: no-repeat;
+}
+
+.img-02 {
+  background-image: url(/images/sua-empresa/img2.svg);
+  background-repeat: no-repeat;
+}
+
+.img-03 {
+  background-image: url(/images/sua-empresa/img3.svg);
+  background-repeat: no-repeat;
+}
+
+.img-04 {
+  background-image: url(/images/sua-empresa/img4.svg);
+  background-repeat: no-repeat;
+}
+
+.img-05 {
+  background-image: url(/images/sua-empresa/img5.svg);
+  background-repeat: no-repeat;
+}
+.img-06 {
+  background-image: url(/images/sua-empresa/img6.svg);
+  background-repeat: no-repeat;
+}
+
+.por-que-alura__img {
+  max-width: 100vw;
+  margin: 0 0 30px -30px;
+}
+
+@media (min-width: 768px) {
+  .cover__art {
+    max-width: 400px;
+    height: 210px;
+  }
+
+  .por-que-alura {
+    padding-top: 70px;
+    background-color: #f7f7f7;
+  }
+
+  .por-que-alura__wrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    flex-direction: column-reverse;
+  }
+
+  .por-que-alura__video iframe {
+    height: 412px;
+  }
+
+  .feature__title {
+    font-size: 32px;
+    width: 60%;
+  }
+
+  .feature__wrapper {
+    &:first-child .feature__title {
+      width: 80%;
+    }
+
+    &:nth-child(2) .feature__title {
+      width: 50%;
+    }
+  }
+
+  .feature__title:before {
+    height: 70px;
+  }
+
+  .feature__image {
+    width: 135px;
+    height: 135px;
+    margin: 0 0 20px 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cover .container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    flex-direction: row-reverse;
+    margin-top: 0;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 0 0 0 130px;
+  }
+
+  .cover__info__wrapper {
+    padding-top: 60px;
+  }
+
+  .--line:after {
+    margin: 25px 0;
+  }
+
+  .cover__info__wrapper {
+    max-width: 400px;
+  }
+
+  .cover__art {
+    background-image: url(/empresas/assets/img/home/cover__desktop.1616501197.svg);
+    max-width: initial;
+    width: 500px;
+    height: 420px;
+    margin: 0;
+  }
+
+  .cover__cta, .cover__test {
+    white-space: nowrap;
+  }
+
+  .por-que-alura__video {
+    margin-bottom: 160px;
+  }
+
+  .por-que-alura__container {
+    padding-right: 140px;
+    padding-left: 140px;
+    max-width: 1280px;
+  }
+
+  .por-que-alura__video iframe {
+    height: 540px;
+  }
+
+  .feature__wrapper {
+    width: 50%;
+
+    .feature__text {
+      width: 80%;
+    }
+
+    
+
+    &:nth-child(even) {
+      margin-left: 50%;
+    }
+  }
+
+  .por-que-alura {
+    .section__cta {
+      margin: 0 auto;
+    }
+
+    &.--features {
+      padding: 100px 0;
+    }
+
+    &.--image {
+      background-color: #fff;
+      padding: 100px 0;
+
+      .container {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: reverse;
+        flex-direction: row-reverse;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        padding: 0 130px;
+      }
+
+      .section__title, .section__text {
+        text-align: left;
+      }
+
+      .section__cta {
+        margin: 0;
+      }
+    }
+  }
+
+  .por-que-alura__img {
+    max-width: 100%;
+    margin-left: 30px;
+  }
+
+  .por-que-alura__image__wrapper {
+    width: 50%;
+  }
+
+  .por-que-alura .--line:after {
+    margin: 25px auto;
+  }
+
+  #por-que-alura .cover__divisor.--small {
+    display: none;
+  }
+
+  .por-que-alura.--features .container {
+    padding: 0 130px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .cover .container {
+    padding: 0 0 0 90px;
+  }
+
+  .cover__info__wrapper {
+    max-width: 500px;
+  }
+
+  .cover__art {
+    max-width: initial;
+    width: 550px;
+    height: 550px;
+    margin: 0;
+  }
+
+  .por-que-alura__container {
+    padding-right: 140px;
+    padding-left: 140px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1200px;
+  }
+
+  .por-que-alura {
+    &.--features .container, &.--image .container {
+      padding: 0 90px;
+    }
+  }
+}
+
+
+/*fim css site*/
+
+html {
+	body {
+		color: #666;
+	}
+}
+@media only screen and (max-width: 600px) {
+	.h-mobile{
+	background: #35364cb5;
+	color: white;
+	}
+	.ordem-mobile-2 {
+    order:2;
+	}
+	.ordem-mobile-1 {
+	order:1;	
+	}
+
+	}
+.lnr {
+	font-size: 70px;
+	color: #35364c;
+}
+.header-padrao {
+    background-image: url(/images/contato.jpeg);
+    background-size: cover;
+    background-position: 100% 20%;
+}
+.pt-10 {
+	padding:10%;
+
+}
+.contato {
+	font-size: 15px;
+}
+.icones {
+	background: #eaeaea;
+}
+.form-contact {
+	width: 100%;
+	font-family: "Arial", Times, serif;
+}
+.form-contact-input {
+	width: 100%;
+	color: #666;
+	font-size: 16px;
+	background-color: #FFF;
+	border: 1px solid #E9E9E9;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	height: 40px;
+	margin-bottom: 20px;
+	text-indent: 20px;
+}
+.form-contact-textarea {
+	width: 100%;
+	color: #666;
+	font-size: 16px;
+	background-color: #FFF;
+	border: 1px solid #E9E9E9;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	height: 200px;
+	margin-bottom: 20px;
+	text-indent: 20px;
+	padding-top: 16px;
+	padding-left: 0;
+	padding-right: 0;
+	font-family: "Arial", Times, serif;
+}
+.form-contact-button {
+	width: 100%;
+	font-size: 18px;
+	border-radius: 4px;
+	color: #fff;
+	height: 40px;
+	opacity: 1;
+	margin-bottom: 20px;
+	cursor: pointer;
+	background: #35364C;
+	display: block;
+	border: none;
+	border-right-color: currentcolor;
+	border-right-style: none;
+	border-right-width: medium;
+	border-bottom-color: currentcolor;
+	border-bottom-style: none;
+	border-bottom-width: medium;
+	border-bottom: 1px solid #500707;
+	border-right: 1px solid #500707;
+	transition: 1s;
+	&:hover {
+		opacity: 1;
+	}
+}
+.svg-img {
+	width: 100%;
+	max-width: 70%;
+}

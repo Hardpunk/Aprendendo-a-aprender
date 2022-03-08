@@ -1,0 +1,86 @@
+footer.footer__wrapper {
+  margin-top: auto;
+}
+
+#footer,
+footer {
+  @include font-size(1rem);
+
+  &,
+  a {
+    color: $theme-color-1;
+  }
+
+  p {
+    line-height: 1.15;
+  }
+
+  .botaoFooter {
+    border-radius: 30px;
+    color: $white;
+    width: 180px;
+    cursor: pointer;
+    height: 40px;
+    background: transparent;
+    border: 1px solid $white;
+    transition: all 250ms ease-in-out;
+
+    &:hover {
+      color: $theme-color-1;
+      background-color: $white;
+    }
+  }
+
+  .news-footer {
+    background: $theme-color-1;
+    color: white;
+  }
+
+  .inputletter {
+    border-radius: 25px;
+    border: 1px solid $theme-color-1;
+    width: 100%;
+    margin-bottom: 2px;
+    padding: 5px 20px !important;
+    margin-right: 75px;
+  }
+
+  .copyright {
+    font-size: 12px;
+    display: block;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .subfooter {
+    background-color: $theme-color-1;
+    color: #fff7f7 !important;
+
+    h5 {
+      font-size: 0.975em;
+    }
+  }
+
+  .social-media {
+    > a {
+      &:not(:last-child) {
+        margin-right: 34px;
+      }
+
+      &:hover {
+        color: $theme-color-3 !important;
+      }
+    }
+  }
+}
+
+#footer {
+  p, a.mailto {
+    @include font-size(14px);
+
+    i {
+      @include font-size(16px);
+    }
+  }
+}

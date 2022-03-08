@@ -1,0 +1,73 @@
+.about-course-trail__wrapper {
+  background-size: cover !important;
+
+  a.btn-read-more {
+    margin: 15px 0 0 !important;
+  }
+
+  &.odd {
+    background-color: $white;
+    color: $theme-color-4;
+
+    a.btn-read-more {
+      background-color: $theme-color-1 !important;
+      color: $white !important;
+    }
+  }
+
+  &.even {
+    background-color: $theme-color-1;
+    color: $white;
+
+    .text-right {
+      text-shadow: 1px 1px $theme-color-1;
+    }
+
+    a.btn-read-more {
+      background-color: $white !important;
+      color: $theme-color-1 !important;
+      text-shadow: none !important;
+    }
+  }
+
+  &--content {
+    p {
+      font-size: 1rem;
+    }
+
+    h2 {
+      @include font-size(28px);
+    }
+
+    h5 {
+      @include font-size(20px);
+    }
+
+    .course-teacher__wrapper {
+      margin-top: 50px !important;
+
+      .view.view-cascade {
+        margin: auto !important;
+        margin-top: -50px !important;
+        @include border-radius(50%);
+
+        img {
+          width: 120px;
+          height: 120px;
+        }
+      }
+
+      .card-body {
+        h5 {
+          color: $theme-color-4;
+        }
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .about-course-trail__wrapper {
+    background: none !important;
+  }
+}

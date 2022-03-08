@@ -1,0 +1,49 @@
+#breadcrumb {
+  background-color: $theme-color-1 !important;
+
+  &.bg-alternative {
+    background-color: $theme-color-3 !important;
+  }
+
+  .breadcrumb__wrapper {
+    h2 {
+      @include font-size(46px);
+    }
+
+    h3 {
+      @include font-size(38px);
+    }
+
+    h6 {
+      a {
+        color: #FFF !important;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    h2, h3, h6 {
+      font-weight: 700;
+    }
+  }
+
+  h2 {
+    padding-top: 1.5rem;
+    @include font-size(26px);
+  }
+
+  h2, h4 {
+    font-weight: 700;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  #breadcrumb {
+    h2 {
+      @include font-size(46px);
+    }
+  }
+}

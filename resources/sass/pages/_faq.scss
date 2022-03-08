@@ -1,0 +1,83 @@
+#faq {
+  color: $theme-color-1;
+
+  h3.title {
+    font-size: 2.5em;
+    font-weight: 700;
+  }
+
+  p.description {
+    font-size: 1.35em;
+  }
+
+  .faq-container {
+    .card {
+      border: none;
+
+      .card-header {
+        border-radius: 0 !important;
+        background-color: $theme-color-1;
+        color: $white;
+        padding: 0;
+        margin: 0;
+
+        button.btn {
+          padding: 1.125rem 1.375rem;
+          color: $white !important;
+          font-weight: 500;
+          text-decoration: none;
+          margin: 0;
+          text-transform: full-size-kana;
+
+          > * {
+            vertical-align: middle;
+            line-height: 24px;
+          }
+
+          &[aria-expanded="true"] {
+            i.fa-plus {
+              display: none;
+            }
+
+            i.fa-minus {
+              display: block;
+            }
+          }
+
+          &[aria-expanded="false"] {
+            i.fa-plus {
+              display: block;
+            }
+
+            i.fa-minus {
+              display: none;
+            }
+          }
+        }
+      }
+
+      &:not(:last-child) {
+        .card-header {
+          border-bottom: 1px solid $white;
+        }
+      }
+
+      .collapse,
+      .collapsing {
+        .card-body {
+          @include font-size(1rem);
+          padding: 1.25rem 1rem;
+          color: #666666 !important;
+        }
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  #faq {
+    h3.title {
+      font-size: 1.75em;
+    }
+  }
+}

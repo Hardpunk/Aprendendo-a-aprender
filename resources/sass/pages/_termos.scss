@@ -1,0 +1,12 @@
+article#termos-uso__wrapper {
+  font-family: 'Montserrat', sans-serif;
+
+  h1 {
+    @include font-size(28px);
+  }
+
+  p {
+    @include font-size(14px);
+    text-align: justify;
+  }
+}
