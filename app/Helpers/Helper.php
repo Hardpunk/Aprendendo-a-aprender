@@ -53,11 +53,10 @@ if (!function_exists('remove_special_char')) {
      * @param $value
      * @return String
      */
-    function remove_special_char($value)
+    function remove_special_char($value): string
     {
         $value = str_replace('-', ' ', $value);
-        $result = preg_replace('/[^a-zA-Z0-9 ]/s', '', $value);
-        return $result;
+        return preg_replace('/[^a-zA-Z0-9 ]/s', '', $value);
     }
 }
 
@@ -72,64 +71,64 @@ if (!function_exists('get_language_country_flag')) {
     {
         $language_codes = [
             'ar' => [
-                'country'  => 'Arábia Saudita',
+                'country' => 'Arábia Saudita',
                 'language' => 'Árabe',
-                'file'     => 'saudi-arabia',
+                'file' => 'saudi-arabia',
             ],
             'en' => [
-                'country'  => 'Estados Unidos',
+                'country' => 'Estados Unidos',
                 'language' => 'Inglês',
-                'file'     => 'united-states-of-america',
+                'file' => 'united-states-of-america',
             ],
             'es' => [
-                'country'  => 'Espanha',
+                'country' => 'Espanha',
                 'language' => 'Espanhol',
-                'file'     => 'spain',
+                'file' => 'spain',
             ],
             'de' => [
-                'country'  => 'Alemanha',
+                'country' => 'Alemanha',
                 'language' => 'Alemão',
-                'file'     => 'germany',
+                'file' => 'germany',
             ],
             'fr' => [
-                'country'  => 'França',
+                'country' => 'França',
                 'language' => 'Francês',
-                'file'     => 'france',
+                'file' => 'france',
             ],
             'it' => [
-                'country'  => 'Itália',
+                'country' => 'Itália',
                 'language' => 'Italiano',
-                'file'     => 'italy',
+                'file' => 'italy',
             ],
             'ja' => [
-                'country'  => 'Japão',
+                'country' => 'Japão',
                 'language' => 'Japonês',
-                'file'     => 'japan',
+                'file' => 'japan',
             ],
             'nl' => [
-                'country'  => 'Holanda',
+                'country' => 'Holanda',
                 'language' => 'Holandês',
-                'file'     => 'netherlands',
+                'file' => 'netherlands',
             ],
             'pl' => [
-                'country'  => 'Polônia',
+                'country' => 'Polônia',
                 'language' => 'Polonês',
-                'file'     => 'republic-of-poland',
+                'file' => 'republic-of-poland',
             ],
             'pt' => [
-                'country'  => 'Brasil',
+                'country' => 'Brasil',
                 'language' => 'Português',
-                'file'     => 'brazil',
+                'file' => 'brazil',
             ],
             'ru' => [
-                'country'  => 'Rússia',
+                'country' => 'Rússia',
                 'language' => 'Russo',
-                'file'     => 'russia',
+                'file' => 'russia',
             ],
             'zh' => [
-                'country'  => 'China',
+                'country' => 'China',
                 'language' => 'Chinês',
-                'file'     => 'china',
+                'file' => 'china',
             ],
         ];
 
@@ -142,20 +141,20 @@ if (!function_exists('truncate_text_at_word')) {
     /**
      * Truncate text at word
      *
-     * @param  mixed  $string
-     * @param  mixed  $limit
-     * @param  string  $break
-     * @param  string  $pad
+     * @param mixed $string
+     * @param mixed $limit
+     * @param string $break
+     * @param string $pad
      * @return mixed
      */
-    function truncate_text_at_word($string, $limit, $break = ".", $pad = "...")
+    function truncate_text_at_word($string, $limit, string $break = ".", string $pad = "...")
     {
         if (strlen($string) <= $limit) {
             return $string;
         }
         if (false !== ($max = strpos($string, $break, $limit))) {
             if ($max < strlen($string) - 1) {
-                $string = substr($string, 0, $max).$pad;
+                $string = substr($string, 0, $max) . $pad;
             }
         }
         return $string;
@@ -166,10 +165,10 @@ if (!function_exists('check_remote_file')) {
     /**
      * Check if remote file exists
      *
-     * @param  string  $url
+     * @param string $url
      * @return bool
      */
-    function check_remote_file($url)
+    function check_remote_file(string $url): bool
     {
         $content_type = '';
         $ch = curl_init();
@@ -196,10 +195,10 @@ if (!function_exists('only_numbers')) {
     /**
      * Returns only numbers
      *
-     * @param  string  $number
+     * @param string $number
      * @return string
      */
-    function only_numbers($number)
+    function only_numbers(string $number): string
     {
         return (string)preg_replace('/\D/', '', $number);
     }
@@ -209,10 +208,10 @@ if (!function_exists('generateAvatar')) {
     /**
      * Generate avatar by user name
      *
-     * @param  string  $fullname
+     * @param string $fullname
      * @return string
      */
-    function generateAvatar($fullname)
+    function generateAvatar(string $fullname): string
     {
         $avatarName = urlencode("{$fullname}");
         return "https://ui-avatars.com/api/?name={$avatarName}&background=838383&color=FFFFFF&size=140&rounded=true";
@@ -223,10 +222,10 @@ if (!function_exists('get_payment_status')) {
     /**
      * Get status message
      *
-     * @param  string  $code
+     * @param string $code
      * @return string
      */
-    function get_payment_status($code)
+    function get_payment_status(string $code): string
     {
         switch ($code) {
             case 'processing':
@@ -271,10 +270,10 @@ if (!function_exists('get_payment_status_label')) {
     /**
      * Get status message
      *
-     * @param  string  $status
+     * @param string $status
      * @return string
      */
-    function get_payment_status_label($status)
+    function get_payment_status_label(string $status): string
     {
         switch ($status) {
             case 'Aguardando pagamento':
@@ -308,10 +307,10 @@ if (!function_exists('get_payment_type')) {
     /**
      * Get payment type
      *
-     * @param  string  $type
+     * @param string $type
      * @return string
      */
-    function get_payment_type($type)
+    function get_payment_type(string $type): string
     {
         switch ($type) {
             case 'credit_card':
@@ -333,12 +332,12 @@ if (!function_exists('numberFormatPrecision')) {
      * Number round hack
      *
      * @param $number
-     * @param  int  $precision
-     * @param  string  $separator
-     * @param  string  $replace
+     * @param int $precision
+     * @param string $separator
+     * @param string $replace
      * @return string
      */
-    function numberFormatPrecision($number, $precision = 2, $separator = '.', $replace = ',')
+    function numberFormatPrecision($number, int $precision = 2, string $separator = '.', string $replace = ','): string
     {
         $numberParts = explode($separator, $number);
         $response = $numberParts[0];
@@ -353,10 +352,10 @@ if (!function_exists('numberFormatPrecision')) {
 if (!function_exists('round_up')) {
     /**
      * @param $number
-     * @param  int  $precision
+     * @param int $precision
      * @return string
      */
-    function round_up($number, $precision = 2)
+    function round_up($number, int $precision = 2): string
     {
         $fig = (int)str_pad('1', $precision, '0');
         $rounded = (ceil($number * $fig) / $fig);
@@ -367,10 +366,10 @@ if (!function_exists('round_up')) {
 if (!function_exists('round_down')) {
     /**
      * @param $number
-     * @param  int  $precision
+     * @param int $precision
      * @return string
      */
-    function round_down($number, $precision = 2)
+    function round_down($number, int $precision = 2): string
     {
         $fig = (int)str_pad('1', $precision, '0');
         $rounded = (floor($number * $fig) / $fig);
@@ -389,7 +388,7 @@ if (!function_exists('format_phone')) {
         $matches = [];
         preg_match('/^([0-9]{2})([0-9]{4,5})([0-9]{4})$/', $formatedPhone, $matches);
         if ($matches) {
-            return '('.$matches[1].') '.$matches[2].'-'.$matches[3];
+            return '(' . $matches[1] . ') ' . $matches[2] . '-' . $matches[3];
         }
 
         return $phone;
@@ -407,9 +406,38 @@ if (!function_exists('format_zipcode')) {
         $matches = [];
         preg_match('/^([0-9]{5})([0-9]{3})$/', $formatedZipcode, $matches);
         if ($matches) {
-            return $matches[1].'-'.$matches[2];
+            return $matches[1] . '-' . $matches[2];
         }
 
         return $zipcode;
+    }
+}
+
+if (!function_exists('select_months')) {
+    /**
+     * @return array
+     */
+    function select_months(): array
+    {
+        $arrayMonths = [
+            'Janeiro',
+            'Fevereiro',
+            'Março',
+            'Abril',
+            'Maio',
+            'Junho',
+            'Julho',
+            'Agosto',
+            'Setembro',
+            'Outubro',
+            'Novembro',
+            'Dezembro'
+        ];
+        $months = [];
+        for ($i = 0; $i < 12; $i++) {
+            $months[$i+1] = $arrayMonths[$i];
+        }
+
+        return $months;
     }
 }

@@ -13,7 +13,7 @@
                                title="{{ $categoria->title }}">
                                 <div class="card-img-top" style="background-image: url('{{ $categoria->image }}');">
                                     <div class="categories__course-count py-1 px-3">
-                                        <span class="icon-agenda">{{ $categoria->courses_total }} CURSOS</span>
+                                        <span class="icon-agenda">{{ $categoria->courses_total }} CURSO(S)</span>
                                     </div>
                                 </div>
                                 <div class="card-body pt-2 pb-0 px-0 d-flex justify-content-center flex-column">

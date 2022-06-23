@@ -1,7 +1,4 @@
-<section id="contato__wrapper" class="py-5 paroller"
-         data-paroller-factor="0.4"
-         data-paroller-factor-xs="0.2"
-         data-paroller-factor-sm="0.3">
+<section id="contato__wrapper" class="py-5">
     <div class="container">
         <h3 class="title d-block text-uppercase text-white text-center mb-4">CONTATO</h3>
         <div class="row">
@@ -26,7 +23,7 @@
                                   class="form-control" required></textarea>
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-3 d-flex justify-content-center">
                         {!! htmlFormSnippet() !!}
                     </div>
 

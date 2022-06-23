@@ -11,6 +11,12 @@ img {
   transition: all 0.3s ease-in-out;
 }
 
+.icon {
+  i {
+    color: $theme-color-2
+  }
+}
+
 .card.category-item {
   .card-body {
     min-height: 85px !important;
@@ -37,7 +43,7 @@ img {
 }
 
 .bg-alternative {
-  background-color: $theme-color-3 !important;
+  background-color: $theme-color-2 !important;
 }
 
 .card-no-shadow {
@@ -139,7 +145,7 @@ img {
 }
 
 .bg-theme-color {
-  background-color: $theme-color-1;
+  background-color: $theme-color-2;
   color: $white;
 
   &:hover {
@@ -314,7 +320,7 @@ body {
               font-size: 16px;
 
               .checkout-button {
-                background-color: $theme-color-1;
+                background-color: $green;
                 color: $white;
                 padding: 10px 25px;
                 display: block;
@@ -342,11 +348,15 @@ body {
         line-height: 30px;
 
         &.sie-button {
-          background-color: $theme-color-1;
+          background-color: $theme-color-2;
           color: $white !important;
           padding: 10px 5px;
           border-radius: 3px;
           line-height: 1;
+
+          &:hover {
+            background-color: darken($theme-color-2, 10%);
+          }
         }
 
         &.cart {
@@ -356,7 +366,7 @@ body {
 
           &:hover {
             .cart-items {
-              background-color: $theme-color-1;
+              background-color: darken($theme-color-3, 10%);
             }
           }
 
@@ -369,7 +379,7 @@ body {
             border-radius: 50%;
             width: 25px;
             height: 25px;
-            background-color: $theme-color-1;
+            background-color: $theme-color-3;
             line-height: 25px;
             text-align: center;
           }

@@ -29,13 +29,13 @@
 
     <div class="container mb-4 p-3">
         <div class="row align-items-center">
-            <div class="col-md-4">
+            <div class="col-md-4 text-center">
                 <a href="/">
-                    <img src="{{ asset('images/logo.png') }}" alt="{{ config('app.name') }}" class="img-fluid">
+                    <img src="{{ asset('images/logo.png') }}" alt="{{ config('app.name') }}" width="200px" class="img-fluid">
                 </a>
                 <div class="col-md-12 social-media text-center mt-2">
-                    <a href="https://www.facebook.com/institutoacesso.dc"> <i class="fab fa-2x fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/institutoacesso.dc"> <i class="fab fa-2x fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/aprendendoaaprenderead" target="_blank"> <i class="fab fa-2x fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/aprendendoaaprenderead/" target="_blank"> <i class="fab fa-2x fa-instagram"></i></a>
                 </div>
             </div>
 
@@ -54,7 +54,7 @@
 
                             <div class="col-md-4">
                                 <a target="_blank"
-                                   href="https://transparencyreport.google.com/safe-browsing/search?url=https:%2F%2Fwww.institutoacesso.com.br&hl=pt_BR">
+                                   href="https://transparencyreport.google.com/safe-browsing/search?url=https:%2F%2Fwww.aprendendoaaprenderead.com.br&hl=pt_BR">
                                     <img class="img-fluid" src="/images/site-seguro.png" alt="Selo site seguro">
                                 </a>
                             </div>
@@ -68,14 +68,15 @@
     <div class="subfooter container-fluid py-4">
         <div class="row">
             <div class="col-12 text-center">
-                <h5 class="font-weight-bold mb-3">Instituto Acesso - Desenvolvimento de Carreiras</h5>
-                <h5 class="mb-3">Goiânia - GO</h5>
-                <h3 class="font-weight-bold mb-0">Fone: (62) 98115-4676</h3>
+                <h5 class="font-weight-bold mb-3">Aprendendo a aprender EAD - Plataforma virtual de aprendizagem</h5>
+                <h5 class="mb-3">R. Osvaldo Cruz, 920 - Monte AprazívelSP, 15150-000</h5>
+                <h3 class="font-weight-bold mb-0">Fone: <a href="tel:17988147535" target="_blank" class="text-white">(17) 98814-7535</h3>
+                <h3 class="font-weight-bold mb-0">E-mail: <a href="mailto:aprendendoaaprenderead@gmail.com" target=_blank class="text-white">aprendendoaaprenderead@gmail.com</h3>
             </div>
         </div>
     </div>
 
-    <p class="copyright m-0 font-weight-bold">{{ config('app.name') }} &copy; {{ date('Y') }}</p>
+    <p class="copyright m-0 font-weight-bold text-secondary">{{ config('app.name') }} &copy; {{ date('Y') }}</p>
 </div>
 
 <footer class="d-block d-md-none">
@@ -118,8 +119,8 @@
                                 </a>
                             </div>
                             <div class="col-md-12 social-media text-aling-center mt-3">
-                                <a href="https://www.facebook.com/institutoacesso.dc"> <i class="fab fa-2x fa-facebook"></i></a>
-                                <a href="https://www.instagram.com/institutoacesso.dc"> <i class="fab fa-2x fa-instagram"></i></a>
+                                <a href="https://www.facebook.com/aprendendoaaprenderead/"> <i class="fab fa-2x fa-facebook"></i></a>
+                                <a href="https://www.instagram.com/aprendendoaaprenderead/"> <i class="fab fa-2x fa-instagram"></i></a>
                             </div>
                         </div>
                     </div>
@@ -136,7 +137,7 @@
 
                             <div class="col-6 offset-3 offset-sm-0 col-sm-4 mb-3 mb-sm-0">
                                 <a target="_blank"
-                                   href="https://transparencyreport.google.com/safe-browsing/search?url=https:%2F%2Fwww.institutoacesso.com.br&hl=pt_BR">
+                                   href="https://transparencyreport.google.com/safe-browsing/search?url=https:%2F%2Fwww.aprendendoaaprenderead.com.br&hl=pt_BR">
                                     <img class="img-fluid" src="/images/site-seguro.png" alt="Selo site seguro">
                                 </a>
                             </div>
@@ -150,7 +151,7 @@
     <div class="subfooter container-fluid py-3">
         <div class="row">
             <div class="col-12 text-center">
-                <h5 class="font-weight-bold mb-3">Instituto Acesso - Desenvolvimento de Carreiras</h5>
+                <h5 class="font-weight-bold mb-3">PRIMUS - Centro de entretenimentos</h5>
                 <h5 class="mb-3">Goiânia- GO</h5>
                 <h3 class="font-weight-bold mb-0">Fone: (62) 98115-4676</h3>
             </div>

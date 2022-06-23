@@ -12,6 +12,13 @@
     </a>
 </li>
 
+<li class="nav-item">
+    <a href="{{ route('admin.affiliates.index') }}" class="nav-link {{ Request::is('painel/affiliates*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-handshake"></i>
+        <p>Afiliados</p>
+    </a>
+</li>
+
 <li class="nav-item {{ Request::is('painel/users*') ? 'active menu-is-opening menu-open' : '' }}">
     <a href="#" class="nav-link">
         <i class="nav-icon fas fa-users"></i>

@@ -91,9 +91,9 @@ function recaptchaCallback() {
                         <div class="card-body">
                             <p><strong>NOME:</strong> {{ $user->name }}</p>
                             <p><strong>E-MAIL:</strong> {{ $user->email }}</p>
-                            <p><strong>TELEFONE:</strong> <span class="phone-mask">{{ $user->profile->phone }}</span></p>
+                            {{-- <p><strong>TELEFONE:</strong> <span class="phone-mask">{{ $user->profile->phone }}</span></p>
                             <p><strong>CPF/CNPJ:</strong> <span class="cpf_cnpj">{{ $user->profile->document_number }}</span></p>
-                            <p><strong>DATA DE NASCIMENTO:</strong> <span class="date">{{ $user->profile->birthday->format('d/m/Y') }}</span></p>
+                            <p><strong>DATA DE NASCIMENTO:</strong> <span class="date">{{ $user->profile->birthday->format('d/m/Y') }}</span></p> --}}
                         </div>
                     </div>
                 </div>

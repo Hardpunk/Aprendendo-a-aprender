@@ -4,6 +4,8 @@ namespace App;
 
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Payment extends Model
 {
@@ -97,6 +99,19 @@ class Payment extends Model
         return $this->hasOne(Coupon::class, 'id', 'coupon_id');
     }
 
+    /**
+     * Return Affiliate
+     *
+     * @return HasOne
+     */
+    public function Affiliate()
+    {
+        return $this->hasOne(Affiliate::class, 'id', 'affiliate_id');
+    }
+
+    /**
+     * @return array
+     */
     public function items()
     {
         $trails = $this->trails->toArray();

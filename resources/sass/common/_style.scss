@@ -8,10 +8,20 @@ html {
 
   body {
     overflow-x: hidden;
-    color: $theme-color-1;
+    color: $theme-color-4;
     font-family: $font-family-sans-serif !important;
     background: $white;
     position: relative;
+
+    .area-info {
+      background-color: $theme-color-3;
+      color: $white;
+      
+      a {
+        color: $white;
+        font-size: 16px;
+      }
+    }
 
     #wrapper {
       display: flex;

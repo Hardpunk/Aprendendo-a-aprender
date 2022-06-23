@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Affiliate;
 use App\Coupon;
 use App\Course;
 use App\Http\Requests\PaymentRequest;
@@ -207,6 +208,16 @@ class CheckoutController extends Controller
                 }
             }
 
+            $affiliateId = null;
+            $affiliate = null;
+            if(Cookie::has(base64_encode('affiliate'))) {
+                $cookieAffiliate = decrypt(Cookie::get(base64_encode('affiliate')));
+                $affiliate = Affiliate::where('id', $cookieAffiliate)->first();
+                if($affiliate !== null) {
+                    $affiliateId = $affiliate->id;
+                }
+            }
+
             $isPlan = false;
             if (array_key_exists('plan', $paymentData)) {
                 $isPlan = true;
@@ -329,10 +340,19 @@ class CheckoutController extends Controller
                     $couponUsed->increment('times_used');
                 }
 
-                Mail::send(new PaymentDone($this->user));
+                if ($affiliate !== null) {
+                    $payment->affiliate_id = $affiliateId;
+                    $payment->save();
+                    $affiliate->increment('times_used');
+                    Cookie::queue(
+                        Cookie::forget(base64_encode('affiliate'))
+                    );
+                }
+				
+				Mail::send(new PaymentDone($this->user));
             } else {
                 if ($transaction->status != 'refused') {
-                    Mail::send(new PaymentWaiting($this->user));
+					Mail::send(new PaymentWaiting($this->user));
                 } else {
                     Session::flash('flash_message', 'Transação recusada, não autorizada.');
                     Session::flash('flash_type', 'danger');

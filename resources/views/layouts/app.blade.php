@@ -74,14 +74,14 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown user-menu">
                     <a href="#" class="nav-link dropdown-toggle logo" data-toggle="dropdown">
-                        <img src="{{ asset('images/logo-square.png') }}"
+                        <img src="{{ asset('images/default.png') }}"
                              class="user-image img-circle elevation-2" alt="User Image">
                         <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <!-- User image -->
                         <li class="user-header bg-secondary">
-                            <img src="{{ asset('images/logo-square.png') }}"
+                            <img src="{{ asset('images/default.png') }}"
                                  class="img-circle elevation-2 bg-white border-0"
                                  alt="User Image">
                             <p class="mb-0 font-weight-bold">{{ Auth::user()->name }}</p>

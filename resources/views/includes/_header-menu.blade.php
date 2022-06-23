@@ -17,7 +17,29 @@
         }
     }
 @endphp
-<div class="container-fluid">
+<div class="area-info p-2 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-auto" style="place-self:center;">
+                <a target="_blank" class="text-decoration-none" href="https://api.whatsapp.com/send?phone=5517988147535&text=Ol%C3%A1%2C%20encontrei%20o%20n%C3%BAmero%20no%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."><i class="fab fa-1x fa-whatsapp"></i> (17) 98814-7535</a>
+            </div>
+            <div class="col-md-auto" style="place-self:center;">
+                <a target="_blank" class="text-decoration-none" href="mailto:aprendendoaaprenderead@gmail.com"><i class="fa fa-1x fa-envelope"></i> aprendendoaaprenderead@gmail.com</a>
+            </div>
+            <div class="col-md" style="place-self:center;">
+                <div class="row justify-content-center justify-content-md-end">
+                    <div class="col-auto">
+                        <a target="_blank" href="https://www.facebook.com/aprendendoaaprenderead/"><i class="fab fa-1x fa-facebook"></i></a>
+                    </div>
+                    <div class="col-auto">
+                        <a target="_blank" href="https://www.instagram.com/aprendendoaaprenderead/"><i class="fab fa-1x fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
     <div class="menu d-none d-md-block">
         <div class="row d-flex align-items-center px-lg-3 py-3">
             <div class="col-md-5 col-xl-2 text-center text-xl-left">
@@ -25,7 +47,7 @@
                     <img src="{{ asset('images/logo.png') }}" alt="{{ config('app.name') }}" class="logo img-fluid"/>
                 </a>
             </div>
-            <div class="col-md-7 col-xl-4">
+            <div class="col-md-7 col-xl-4 d-none">
                 <div class="search-wrapper mb-0 d-flex justify-content-center">
                     <form action="{{ route('search') }}" method="GET" role="search" class="form-search-box">
                         <input autocomplete="off" type="text" class="form-control search-input" name="q"/>
@@ -40,7 +62,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-md-12 col-xl-6">
+            <div class="col-md-12 col-xl-10">
                 <ul class="navbar-nav float-right flex-row align-items-center mb-xl-1">
                     <li class="nav-item {{ Request::is('/*') ? 'active' : '' }}">
                         <a href="/" class="nav-link">Início</a>
@@ -139,7 +161,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="https://www.sie.com.br/institutoacesso" class="nav-link sie-button">Área do aluno</a>
+                        <a href="https://www.sie.com.br/aprendendo-a-aprender" target="_blank" class="nav-link sie-button">Área do aluno</a>
                     </li>
                 </ul>
             </div>
@@ -194,7 +216,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="https://www.sie.com.br/institutoacesso" class="nav-link sie-button">Área do aluno</a>
+                        <a href="https://www.sie.com.br/aprendendo-a-aprender" target="_blank" class="nav-link sie-button">Área do aluno</a>
                     </li>
                 </ul>
             </div>

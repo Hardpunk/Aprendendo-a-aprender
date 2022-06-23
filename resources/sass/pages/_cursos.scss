@@ -364,7 +364,7 @@
       .checkout-button__wrapper {
         .checkout-button,
         .go-checkout-button {
-          background-color: #0E815C;
+          background-color: $green;
           color: $white;
           padding: 10px 25px;
           display: block;
@@ -537,7 +537,7 @@
       .checkout-button__wrapper {
         .checkout-button,
         .go-checkout-button {
-          background-color: $theme-color-1;
+          background-color: $green;
           color: $white;
           padding: 10px 25px;
           display: block;
