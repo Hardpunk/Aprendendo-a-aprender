@@ -3,7 +3,7 @@
 @section('pre_scripts')
 <script>
 function recaptchaCallback() {
-    $('#buttCard').removeAttr('disabled');
+    $('.btn-payment:visible').removeAttr('disabled');
 }
 </script>
 {!! htmlScriptTagJsApi() !!}
@@ -210,14 +210,14 @@ function recaptchaCallback() {
                                 <h5 class="m-0 p-2 font-weight-bold">CARTÃO DE CRÉDITO</h5>
                             </a>
                         </li>
-                        {{-- <li class="nav-item" role="presentation">
+                         <li class="nav-item" role="presentation">
                             <a id="bank-slip-tab" class="nav-link"
                                 data-toggle="tab" role="tab"
                                 aria-controls="bank-slip" aria-selected="true"
                                 href="#bank-slip">
                                 <h5 class="m-0 p-2 font-weight-bold">BOLETO</h5>
                             </a>
-                        </li> --}}
+                        </li>
                     </ul>
                     <div class="tab-content">
                         <div id="credit-card" class="tab-pane fade show active"
@@ -318,23 +318,20 @@ function recaptchaCallback() {
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <button id="buttCard" class="btn btn-lg btn-login" type="button" disabled>EFETUAR PAGAMENTO</button>
+                                            <button id="buttCard" class="btn btn-lg btn-login btn-payment"
+                                                    type="button" disabled>EFETUAR PAGAMENTO</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                        {{-- <div id="bank-slip" class="tab-pane fade"
-                            role="tabpanel" aria-labelledby="bank-slip-tab">
-                            {{-- <div class="row">
-                                <div class="col-md-12">
-                                    <form method="POST" name="formboleto" action="">
+                        <div id="bank-slip" class="tab-pane fade" role="tabpanel" aria-labelledby="bank-slip-tab">
+                            <div class="card border-top-0">
+                                <div class="card-body boxPay">
+                                    <form id="bank-slip_form" method="POST" action="{{ route('checkout.payment') }}" accept-charset="UTF-8">
                                         @csrf
-                                        <div id="box-boleto" style="display: none;" class="card shadow-sm">
-                                            <div class="card-header">
-                                                <div id="box-boleto-bandeira" class="brand-image cc-number"></div>
-                                                <strong class="lead">Boleto</strong>
-                                            </div>
+                                        <div id="box-boleto" class="card shadow-sm">
+                                            <div class="card-header font-weight-bold">BOLETO</div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-md-12">
@@ -356,29 +353,35 @@ function recaptchaCallback() {
                                                             Clique em "EFETUAR PAGAMENTO" para abrir o boleto em uma nova janela do seu navegador.
                                                         </p>
                                                         <p>A transação será concluída somente após a confirmação do pagamento.</p>
-
-                                                        <p class="contrato">
-                                                            <button type="button" id="buttBoleto" class="btn">EFETUAR PAGAMENTO</button>
-                                                        </p>
                                                     </div>
                                                     <div id="boleto-message"></div>
-                                                    <input type="hidden" name="endereco" value="">
-                                                    <input type="hidden" name="numero_endereco" value="">
-                                                    <input type="hidden" name="bairro" value="">
-                                                    <input type="hidden" name="complemento" value="">
-                                                    <input type="hidden" name="cidade" value="">
-                                                    <input type="hidden" name="estado" value="">
-                                                    <input type="hidden" name="pais" value="">
-                                                    <input type="hidden" name="cep" value="">
-                                                    <input type="hidden" name="metodo" id="metodoboleto" value="boletosicoob">
-                                                    <input type="hidden" name="type" value="boleto">
+                                                    <input type="hidden" name="street">
+                                                    <input type="hidden" name="street_number">
+                                                    <input type="hidden" name="neighborhood">
+                                                    <input type="hidden" name="complement">
+                                                    <input type="hidden" name="city">
+                                                    <input type="hidden" name="state">
+                                                    <input type="hidden" name="country" value="br">
+                                                    <input type="hidden" name="zipcode">
+                                                    <input type="hidden" name="payment_method" value="boleto">
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="row my-4">
+                                            <div class="col-md-12">
+                                                {!! htmlFormSnippet([
+                                                    'callback' => 'recaptchaCallback'
+                                                ]) !!}
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <button id="buttBoleto" class="btn btn-lg btn-login btn-payment"
+                                                    type="button" disabled>EFETUAR PAGAMENTO</button>
+                                        </div>
                                     </form>
                                 </div>
-                            </div> -- }}
-                        </div> --}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

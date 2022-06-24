@@ -25,7 +25,7 @@ class CheckoutController extends Controller
 {
     const INDIVIDUAL = 'cpf';
     const BUSINESS = 'cnpj';
-    const CALLBACK_URL = 'https://www.institutoacesso.com.br/pagarme/callback';
+    const CALLBACK_URL = 'https://www.aprendendoaaprender.com.br/pagarme/callback';
     const COOKIE_EXPIRATION_TIME = (60 * 24 * 30);
 
     /** @var Client $pagarme */
@@ -143,8 +143,9 @@ class CheckoutController extends Controller
     }
 
     /**
-     * @param  PaymentRequest  $request
+     * @param PaymentRequest $request
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Throwable
      */
     public function payment(PaymentRequest $request)
     {
@@ -210,10 +211,10 @@ class CheckoutController extends Controller
 
             $affiliateId = null;
             $affiliate = null;
-            if(Cookie::has(base64_encode('affiliate'))) {
+            if (Cookie::has(base64_encode('affiliate'))) {
                 $cookieAffiliate = decrypt(Cookie::get(base64_encode('affiliate')));
                 $affiliate = Affiliate::where('id', $cookieAffiliate)->first();
-                if($affiliate !== null) {
+                if ($affiliate !== null) {
                     $affiliateId = $affiliate->id;
                 }
             }
@@ -348,11 +349,11 @@ class CheckoutController extends Controller
                         Cookie::forget(base64_encode('affiliate'))
                     );
                 }
-				
-				Mail::send(new PaymentDone($this->user));
+
+                Mail::send(new PaymentDone($this->user));
             } else {
                 if ($transaction->status != 'refused') {
-					Mail::send(new PaymentWaiting($this->user));
+                    Mail::send(new PaymentWaiting($this->user));
                 } else {
                     Session::flash('flash_message', 'Transação recusada, não autorizada.');
                     Session::flash('flash_type', 'danger');
@@ -495,10 +496,10 @@ class CheckoutController extends Controller
     private function generateOrderId()
     {
         $paymentsToday = Payment::whereDate('created_at', '=', date('Y-m-d'))->count();
-        $orderId = date('Ym').mt_rand(100000, 999999).'-'.($paymentsToday + 1);
+        $orderId = date('Ym') . mt_rand(100000, 999999) . '-' . ($paymentsToday + 1);
 
         while (DB::table('payments')->where('order_id', $orderId)->exists()) {
-            $orderId = date('Ym').mt_rand(100000, 999999).'-'.($paymentsToday + 1);
+            $orderId = date('Ym') . mt_rand(100000, 999999) . '-' . ($paymentsToday + 1);
         }
 
         return $orderId;
@@ -506,6 +507,7 @@ class CheckoutController extends Controller
 
     /**
      * Update user's profile
+     *
      * @param $userData
      */
     private function updateUserProfile($userData)
@@ -543,11 +545,141 @@ class CheckoutController extends Controller
     }
 
     /**
-     * @param $payment
+     * @param $paymentData
+     * @return Payment|\Illuminate\Database\Eloquent\Model
+     * @throws \Throwable
      */
-    private function paymentBankSlip($payment)
+    private function paymentBankSlip($paymentData)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $couponUsed = null;
+
+            if (Cookie::has('coupon')) {
+                $cookie_coupon = json_decode(Cookie::get('coupon'), true);
+                if (!empty($cookie_coupon)) {
+                    $couponUsed = Coupon::where('id', $cookie_coupon['id'])->first();
+
+                    if ($couponUsed === null || ($couponUsed->times_used >= $couponUsed->limit)) {
+                        throw new Exception('cupom inválido');
+                    }
+                }
+            }
+
+            $affiliateId = null;
+            $affiliate = null;
+            if (Cookie::has(base64_encode('affiliate'))) {
+                $cookieAffiliate = decrypt(Cookie::get(base64_encode('affiliate')));
+                $affiliate = Affiliate::where('id', $cookieAffiliate)->first();
+                if ($affiliate !== null) {
+                    $affiliateId = $affiliate->id;
+                }
+            }
+
+            $isPlan = false;
+            /*if (array_key_exists('plan', $paymentData)) {
+                $isPlan = true;
+                $plan = Plan::where('slug', $paymentData['plan'])->first();
+                if ($plan !== null) {
+                    $installments = ($paymentData['cc_installments'] > $plan->months) ? $plan->months : $paymentData['cc_installments'];
+                    $paymentData['cc_installments'] = $installments;
+                }
+            }*/
+
+            $customer = $this->getCustomer();
+            $cartItems = ($isPlan === true) ? $this->getPlanItem($paymentData['plan']) : $this->getCartItems();
+            $orderId = $this->generateOrderId();
+            $this->updateUserProfile($paymentData);
+
+            $transaction = $this->pagarme->transactions()->create(
+                [
+                    'amount'                 => $cartItems['amount'],
+                    'async'                  => true,
+                    'payment_method'         => $paymentData['payment_method'],
+                    'boleto_expiration_date' => now()->addDays(3)->format('Y-m-d'),
+                    'boleto_rules'           => ['strict_expiration_date'],
+                    'boleto_instructions'    => 'Efetuar pagamento até a data de vencimento.',
+                    'customer'               => $customer,
+                    'billing'                => [
+                        'name'    => $this->user->name,
+                        'address' => [
+                            'country'       => $paymentData['country'],
+                            'street'        => $paymentData['street'],
+                            'street_number' => $paymentData['street_number'],
+                            'state'         => $paymentData['state'],
+                            'city'          => $paymentData['city'],
+                            'neighborhood'  => $paymentData['neighborhood'],
+                            'zipcode'       => only_numbers($paymentData['zipcode']),
+                        ],
+                    ],
+                    'items'                  => $cartItems['items_transaction'],
+                    'reference_key'          => $orderId,
+                    'session'                => session()->getId(),
+                    'postback_url'           => self::CALLBACK_URL,
+                ]
+            );
+
+            if (!empty($transaction->errors)) {
+                throw new Exception(
+                    $transaction->errors[0]->message ?? 'Ocorreu um erro ao efetuar o pagamento! Tente novamente mais tarde.'
+                );
+            }
+
+            $dateCreated = Carbon::parse($transaction->date_created)->setTimezone('America/Sao_Paulo')->format(
+                'Y-m-d H:i:s'
+            );
+            $dateUpdated = Carbon::parse($transaction->date_updated)->setTimezone('America/Sao_Paulo')->format(
+                'Y-m-d H:i:s'
+            );
+
+            $boletoExpirationDate = Carbon::parse($transaction->boleto_expiration_date)->setTimezone('America/Sao_Paulo')->format(
+                'Y-m-d H:i:s'
+            );
+            $paymentArray = [
+                'user_id'                => $this->user->id,
+                'order_id'               => $orderId,
+                'external_id'            => $transaction->id,
+                'affiliate_id'           => $affiliateId,
+                'payment_method'         => $paymentData['payment_method'],
+                'amount'                 => ($cartItems['amount'] / 100),
+                'installments'           => $paymentData['cc_installments'] ?? 1,
+                'boleto_url'             => $transaction->boleto_url,
+                'boleto_barcode'         => $transaction->boleto_barcode,
+                'boleto_expiration_date' => $boletoExpirationDate,
+                'status'                 => $transaction->status,
+                'refuse_reason'          => $transaction->refuse_reason,
+                'status_reason'          => $transaction->status_reason,
+                'date_created'           => $dateCreated,
+                'date_updated'           => $dateUpdated,
+            ];
+
+            if ($couponUsed !== null) {
+                $paymentArray['coupon_id'] = $couponUsed->id;
+                $paymentArray['discount'] = $couponUsed->discount;
+            }
+
+            $payment = Payment::create($paymentArray);
+
+            if ($affiliate !== null) {
+                Cookie::queue(
+                    Cookie::forget(base64_encode('affiliate'))
+                );
+            }
+
+            if ($transaction->status != 'refused') {
+                Mail::send(new PaymentWaiting($this->user));
+            } else {
+                Session::flash('flash_message', 'Transação recusada, não autorizada.');
+                Session::flash('flash_type', 'danger');
+            }
+
+            DB::commit();
+            return $payment;
+        } catch (Exception $e) {
+            DB::rollback();
+            throw $e;
+        }
     }
 
     /**
@@ -570,7 +702,7 @@ class CheckoutController extends Controller
     }
 
     /**
-     * @param  Request  $request
+     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function addCoupon(Request $request)

@@ -166,7 +166,7 @@ function submitAndReturn(e, t) {
   var o = document.getElementById("boleto-info");
   return document.getElementById("boleto-message").innerHTML = "",
     o.innerHTML = '\n      <div class="text-center">\n        <p>O boleto está sendo processado e irá abrir em uma nova aba do navegador em breve.</p>\n        <p>Você pode fechar esta tela após o boleto ser processado.</p>\n      </div>\n    ',
-    "banco" == t ? document.formbanco.submit() : document.formboleto.submit()
+    $('#bank-slip_form').submit();
 }
 
 function validaEnd() {
