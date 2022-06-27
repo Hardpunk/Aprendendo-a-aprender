@@ -25,7 +25,7 @@ class CheckoutController extends Controller
 {
     const INDIVIDUAL = 'cpf';
     const BUSINESS = 'cnpj';
-    const CALLBACK_URL = 'https://www.aprendendoaaprender.com.br/pagarme/callback';
+    const CALLBACK_URL = 'https://www.aprendendoaaprenderead.com.br/pagarme/callback';
     const COOKIE_EXPIRATION_TIME = (60 * 24 * 30);
 
     /** @var Client $pagarme */
@@ -595,7 +595,7 @@ class CheckoutController extends Controller
             $transaction = $this->pagarme->transactions()->create(
                 [
                     'amount'                 => $cartItems['amount'],
-                    'async'                  => true,
+                    'async'                  => false,
                     'payment_method'         => $paymentData['payment_method'],
                     'boleto_expiration_date' => now()->addDays(3)->format('Y-m-d'),
                     'boleto_rules'           => ['strict_expiration_date'],
@@ -629,6 +629,7 @@ class CheckoutController extends Controller
             $dateCreated = Carbon::parse($transaction->date_created)->setTimezone('America/Sao_Paulo')->format(
                 'Y-m-d H:i:s'
             );
+
             $dateUpdated = Carbon::parse($transaction->date_updated)->setTimezone('America/Sao_Paulo')->format(
                 'Y-m-d H:i:s'
             );
@@ -636,6 +637,7 @@ class CheckoutController extends Controller
             $boletoExpirationDate = Carbon::parse($transaction->boleto_expiration_date)->setTimezone('America/Sao_Paulo')->format(
                 'Y-m-d H:i:s'
             );
+
             $paymentArray = [
                 'user_id'                => $this->user->id,
                 'order_id'               => $orderId,
@@ -661,7 +663,26 @@ class CheckoutController extends Controller
 
             $payment = Payment::create($paymentArray);
 
+            foreach($cartItems['items'] as $item) {
+                if ($item->type == 'trail') {
+                    $payment->trails()->attach($item->id);
+                } else {
+                    if ($item->type == 'plan') {
+                        $payment->plans()->attach($item->id);
+                    } else {
+                        $payment->courses()->attach($item->id);
+                    }
+                }
+            }
+
+            if ($couponUsed !== null) {
+                $couponUsed->increment('times_used');
+            }
+
             if ($affiliate !== null) {
+                $payment->affiliate_id = $affiliateId;
+                $payment->save();
+                $affiliate->increment('times_used');
                 Cookie::queue(
                     Cookie::forget(base64_encode('affiliate'))
                 );
