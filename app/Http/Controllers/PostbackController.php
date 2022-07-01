@@ -25,6 +25,9 @@ class PostbackController extends Controller
         $this->payment = new Payment();
     }
 
+    /**
+     * @throws Exception
+     */
     public function callback(Request $request)
     {
         $payload = $request->getContent();
@@ -40,14 +43,15 @@ class PostbackController extends Controller
             $dateUpdated = Carbon::parse($payloadData['transaction']['date_updated'])->setTimezone(
                 'America/Sao_Paulo'
             )->format('Y-m-d H:i:s');
+
             $payment = $this->payment->where('external_id', $payloadData['id'])->first();
             if ($payment !== null) {
                 $payment->status = $payloadData['current_status'];
                 $payment->date_updated = $dateUpdated;
                 $payment->save();
-                /*if ($payloadData['old_status'] != 'paid' && $payloadData['current_status'] == 'paid') {
+                if ($payloadData['old_status'] != 'paid' && $payloadData['current_status'] == 'paid') {
                     $this->createIpedRegistration($payment);
-                }*/
+                }
             }
             /*  else {
                 $dateCreated = Carbon::parse($payloadData['transaction']['date_created'])->setTimezone('America/Sao_Paulo')->format('Y-m-d H:i:s');
@@ -86,7 +90,7 @@ class PostbackController extends Controller
             'user_country'   => 34,
             'user_cellphone' => $payment->user->profile->phone,
             'user_info'      => $payment->user->id,
-            'group_id'       => env('IPED_GROUP'),
+            'group_id'       => config('app.iped_group'),
         ];
 
         if ($newUserId === 0) {
@@ -96,7 +100,7 @@ class PostbackController extends Controller
         if ($payment->courses->count() > 0) {
             $courses = $payment->courses->pluck('course_id')->toArray();
             $iped_user['course_id'] = $courses;
-            $iped_user['course_plan'] = 1;
+            $iped_user['course_plan'] = 2;
             $newUserId = $this->ipedUserRegistration($iped_user, $payment->user);
         }
 
