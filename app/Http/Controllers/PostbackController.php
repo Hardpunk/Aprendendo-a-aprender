@@ -33,6 +33,7 @@ class PostbackController extends Controller
         $payload = $request->getContent();
         $signature = $request->header('X-Hub-Signature');
         $postbackIsValid = $this->pagarme->postbacks()->validate($payload, $signature);
+        $failStatus = ['canceled', 'voided', 'failed', 'with_error', 'refused'];
 
         if ($postbackIsValid) {
             parse_str($payload, $payloadData);
@@ -51,6 +52,13 @@ class PostbackController extends Controller
                 $payment->save();
                 if ($payloadData['old_status'] != 'paid' && $payloadData['current_status'] == 'paid') {
                     $this->createIpedRegistration($payment);
+                } elseif ($payloadData['old_status'] != 'paid' && in_array($payloadData['current_status'], $failStatus)) {
+                    if (!is_null($payment->Affiliate)) {
+                        $payment->Affiliate->decrement('times_used');
+                    }
+                    if (!is_null($payment->Coupon)) {
+                        $payment->Coupon->decrement('times_used');
+                    }
                 }
             }
             /*  else {
@@ -90,18 +98,15 @@ class PostbackController extends Controller
             'user_country'   => 34,
             'user_cellphone' => $payment->user->profile->phone,
             'user_info'      => $payment->user->id,
+            'user_genre'     => $payment->user->profile->sex == 'male' ? 1 : 0,
             'group_id'       => config('app.iped_group'),
         ];
-
-        if ($newUserId === 0) {
-            $iped_user['user_genre'] = $payment->user->profile->sex == 'male' ? 1 : 0;
-        }
 
         if ($payment->courses->count() > 0) {
             $courses = $payment->courses->pluck('course_id')->toArray();
             $iped_user['course_id'] = $courses;
             $iped_user['course_plan'] = 2;
-            $newUserId = $this->ipedUserRegistration($iped_user, $payment->user);
+            $this->ipedUserRegistration($iped_user, $payment->user);
         }
 
         if ($payment->trails->count() > 0) {
@@ -111,7 +116,7 @@ class PostbackController extends Controller
             }
             $iped_user['course_id'] = $courses;
             $iped_user['course_plan'] = 3;
-            $newUserId = $this->ipedUserRegistration($iped_user, $payment->user);
+            $this->ipedUserRegistration($iped_user, $payment->user);
         }
 
         Mail::send(new PaymentDone($payment->user));
