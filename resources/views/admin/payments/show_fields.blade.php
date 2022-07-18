@@ -52,6 +52,8 @@
                             @else
                                 <b>Método Pagamento:</b><br>
                                 <span class="badge badge-bank-slip"><i class="fas fa-barcode"></i>  Boleto</span>
+                                <a href="{{ $payment->boleto_url  }}" target="_blank"
+                                   class="badge badge-primary">Visualizar boleto</a>
                             @endif
                         </div>
                         <div class="col-sm-12 col-md-6">

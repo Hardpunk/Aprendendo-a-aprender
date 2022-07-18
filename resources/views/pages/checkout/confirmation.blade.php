@@ -1,5 +1,10 @@
 @extends('layouts.checkout', ['steps' => [true, true, true]])
 
+@section('css')
+    <!-- Toastr -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+@endsection
+
 @section('content')
     <section id="checkout-confirmation" class="py-5">
         <div class="container">
@@ -16,7 +21,7 @@
                         <div class="col-md-12 mt-5 checkout-confirmation-summary">
                             <h4 class="mt-0 mb-1 font-weight-bold d-flex align-items-center">
                                 <span>Pedido {{ $payment->order_id }}</span>
-                                @if($payment->type == 'boleto')
+                                @if($payment->payment_method == 'Boleto')
                                 <i class="fas fa-barcode ml-3" title="Boleto"></i>
                                 @else
                                 <i class="fas fa-credit-card ml-3" title="Cartão de Crédito"></i>
@@ -50,7 +55,7 @@
                                                 {{ $type === 'trail' ? 'TRILHA DO CONHECIMENTO - ' : '' }}{{ mb_strtoupper($item->title) }}
                                                 </a>
                                             </td>
-                                            <td class="text-right">R$ {{ $itemPrice }}</td>
+                                            <td class="text-right">R$ {{ number_format($itemPrice, 2, ',', '.') }}</td>
                                         </tr>
                                         @endforeach
                                     @endforeach
@@ -72,3 +77,23 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"
+            integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        function copyText(e) {
+            e.preventDefault();
+
+            let text = $(this).data('barcode');
+            navigator.clipboard.writeText(text);
+
+            toastr.options.preventDuplicates = true;
+            toastr.success('Link copiado com sucesso!');
+        }
+
+        $(document).on('click', 'button.copy', copyText);
+    </script>
+@endpush
