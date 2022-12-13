@@ -68,7 +68,8 @@
     <div class="subfooter container-fluid py-4">
         <div class="row">
             <div class="col-12 text-center">
-                <h5 class="font-weight-bold mb-3">Aprendendo a aprender EAD - Plataforma virtual de aprendizagem</h5>
+                <h5 class="font-weight-bold mb-2">Aprendendo a aprender EAD - Plataforma virtual de aprendizagem</h5>
+                <h5 class="font-weight-bold mb-3">CNPJ: 40.435.241/0001-88</h5>
                 <h5 class="mb-3">R. Osvaldo Cruz, 920 - Monte AprazívelSP, 15150-000</h5>
                 <h3 class="font-weight-bold mb-0">Fone: <a href="tel:17988147535" target="_blank" class="text-white">(17) 98814-7535</h3>
                 <h3 class="font-weight-bold mb-0">E-mail: <a href="mailto:aprendendoaaprenderead@gmail.com" target=_blank class="text-white">aprendendoaaprenderead@gmail.com</h3>
