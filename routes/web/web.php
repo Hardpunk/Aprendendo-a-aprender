@@ -88,7 +88,7 @@ Route::group(['prefix' => '/cart'], function () {
     Route::post('/add', 'CartController@add')->name('cart.add');
 });
 
-//Route::get('/pagarme/callback', 'PostbackController@callback')->name('pagarme.callback');
+Route::post('/pagarme/callback', 'PostbackController@callback')->name('pagarme.callback');
 
 /*
 |--------------------------------------------------------------------------

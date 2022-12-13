@@ -131,6 +131,10 @@ return [
 
     'email_reply_to' => env('MAIL_REPLY_TO'),
 
+    'email_from_address' => env('MAIL_FROM_ADDRESS'),
+
+    'email_from_name' => env('MAIL_FROM_NAME'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

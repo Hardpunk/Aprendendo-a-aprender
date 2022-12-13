@@ -32,7 +32,7 @@ class PaymentWaiting extends Mailable
      */
     public function build()
     {
-        return $this->from(env('MAIL_FROM_ADDRESS'))
+        return $this->from(config('app.email_from_address'), config('app.email_from_name'))
             ->to($this->user->email, $this->user->name)
             ->replyTo(config('app.email_reply_to'))
             ->subject('Aguardando confirmação de pagamento')

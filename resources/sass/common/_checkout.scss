@@ -64,6 +64,19 @@ html {
           }
         }
 
+        #bank-slip {
+          > .card {
+            border-top-left-radius: 0 !important;
+            border-top-right-radius: 0 !important;
+          }
+
+          .card {
+            .card-body.boxPay {
+              background-color: rgba(0, 0, 0, 0.03);
+            }
+          }
+        }
+
         #credit-card {
           > .card {
             border-top-left-radius: 0 !important;

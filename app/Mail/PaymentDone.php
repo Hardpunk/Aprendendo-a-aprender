@@ -31,7 +31,7 @@ class PaymentDone extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->from(env('MAIL_FROM_ADDRESS'))
+        return $this->from(config('app.email_from_address'), config('app.email_from_name'))
             ->to($this->user->email, $this->user->name)
             ->replyTo(config('app.email_reply_to'))
             ->subject('Matrícula efetuada com sucesso!')

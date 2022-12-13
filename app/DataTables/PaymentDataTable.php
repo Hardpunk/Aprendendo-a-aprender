@@ -138,6 +138,9 @@ class PaymentDataTable extends DataTable
                             case "Em processo":
                                 label = "<span class=\"badge badge-info\">"+data+"</span>";
                                 break;
+                            case "Aguardando pagamento":
+                                label = "<span class=\"badge badge-warning\">"+data+"</span>";
+                                break;
                         }
                         return label;
                     }';
