@@ -40,16 +40,16 @@ class UnregisteredUserDataTable extends DataTable
             ->with('profile')
             ->whereDoesntHave('payments', function ($q) {
                 $q->where('status', 'paid');
-                $q->whereHas('courses', function ($q) {
-                    $q->whereDate('payments.created_at', '>=', Carbon::now()->subMonth(2)->format('Y-m-d'));
-                });
-                $q->orWhereHas('trails', function ($q) {
-                    $q->whereDate('payments.created_at', '>=', Carbon::now()->subMonth(3)->format('Y-m-d'));
+                $q->where(function($q2) {
+                    $q2->whereHas('courses', function ($q3) {
+                        $q3->whereDate('payments.created_at', '>=', Carbon::now()->subMonth(2)->format('Y-m-d'));
+                    });
+                    $q2->orWhereHas('trails', function ($q3) {
+                        $q3->whereDate('payments.created_at', '>=', Carbon::now()->subMonth(3)->format('Y-m-d'));
+                    });
                 });
             })
-            ->orWhereDoesntHave('payments', function ($q) {
-                $q->where('status', 'paid');
-            })->groupBy('users.id');
+            ->groupBy('users.id');
     }
 
     /**
